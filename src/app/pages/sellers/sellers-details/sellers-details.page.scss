@@ -1,0 +1,112 @@
+.w-100 {
+    width: 100%;
+   
+  }
+  .toolbar{
+    border-radius: 5px;
+  }
+  /****************************
+  *                           *
+  *   about Body styleing     *
+  *                           *
+  *****************************/
+  .logo-img{
+    width: 100%;
+    border-radius: 50%;
+    min-height: 250px;
+    margin-top:.5px;
+  }
+  .logo-img-holder{
+    width: 100%;
+    border: 5px solid white;
+    border-radius: 50%;
+    min-height: 250px;
+    max-height: 700px;
+    margin-top: -130px;
+  }
+  .C-name{
+    font-weight: bold;
+    text-align: center;
+    text-transform: capitalize;
+    color: var(--ion-color-dark)
+  }
+  .about-rating{
+    text-align: center!important;
+  }
+  .basic-info{
+    font-size: large;
+    font-weight: normal;
+    text-transform: capitalize;
+    border-bottom: .05vw solid var(--ion-color-dark);
+  }
+  .bio{
+    text-align: center !important;
+    border-bottom: .05vw solid var(--ion-color-dark);
+  };
+  .review-rating{
+    float: right;
+    color: var(--ion-color-primary);
+  }
+  .main-rating{
+    text-align: center;
+    color: var(--ion-color-primary);
+    font-size: 25px;
+    border-bottom: .05px solid var(--ion-color-dark);
+  }
+  .seller-reviews {
+    padding-bottom: 4em;
+  }
+  .review-text{
+    height: 7em;
+    text-overflow: ellipsis!important;
+  }
+ 
+  /****************************
+  *                           *
+  *   products Body styleing  *
+  *                           *
+  *****************************/
+  .product-img {
+    border-radius: 21px;
+  }
+  
+  .up {
+    position: absolute;
+  }
+  .product-cards {
+    border-radius: 21px;
+    background-color: #fff;
+  }
+  ion-button#like-btn {
+    width: 2em;
+    height: 2em;
+    float: right;
+    --border-radius: 50% !important;
+  }
+  
+  .title {
+    margin: 0px;
+    font-weight: bolder;
+    font-size: 0.6rem;
+    text-align: center;
+  }
+  .rating {
+    text-align: center;
+  }
+
+    /****************************
+  *                           *
+  *   stories Body styleing  *
+  *                           *
+  *****************************/
+.story-actions {
+border-top: 1px solid #000000;
+}
+.story-text {
+  padding: 0 0 3% 4%;
+  text-align: left;
+  line-height: 1.2em;
+  font-size: larger;
+}
+  
+  

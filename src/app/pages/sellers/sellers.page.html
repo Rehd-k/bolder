@@ -1,0 +1,422 @@
+<app-header></app-header>
+<ion-toolbar color="light">
+  <ion-item>
+    <ion-searchbar [formControl]="searchControl" placeholder="search {{filter}}" inputmode="search" type="text" (ionChange)="onSearchInput()" showCancelButton="focus" mode="ios"></ion-searchbar>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Filter</ion-label>
+    <ion-select  placeholder="Select Type" [formControl]="filterControl" (ionChange)="onSearchInput()">
+      <ion-select-option value="All">All</ion-select-option>
+      <ion-select-option value="Comotologist">Comotologist</ion-select-option>
+      <ion-select-option value="Perfumist">Perfumist</ion-select-option>
+      <ion-select-option value="Tailiors">Tailiors</ion-select-option>
+      <ion-select-option value="People that make">People that make</ion-select-option>
+    </ion-select>
+  </ion-item>
+</ion-toolbar>
+
+
+
+<ion-content>
+  <div *ngIf="searching" class="spinner-container">
+    <ion-spinner></ion-spinner>
+  </div>
+  <ng-container *ngIf="sellers.length > 0 else noItmes">
+    <ion-grid>
+      <ion-row>
+        <ion-col sizeLg="3" sizeMd="4" sizeXs="6" *ngFor="let s of sellers">
+
+          <ion-card [routerLink]="['./', s._id]" class="animate__animated animate__slideInUp">
+            <ion-row>
+              <ion-col size="12">
+                <img [src]="s.companyLogo" id="product-img">
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12">
+                <ion-text>
+                  <p class="title">{{s.companyName}}
+                    <ion-icon name="add" *ngIf="!s.isVerified"></ion-icon>
+                  </p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+
+
+            <ion-row class="rating">
+              <ion-col size="12">
+                <div class="rating">
+                  <ion-icon name="star{{ s.rating < 1 ?'': '-outline' }}" color="secondary"></ion-icon>
+                  <ion-icon name="star{{ s.rating < 2 ?'': '-outline' }}" color="secondary"></ion-icon>
+                  <ion-icon name="star{{ s.rating < 3 ?'': '-outline' }}" color="secondary"></ion-icon>
+                  <ion-icon name="star{{ s.rating < 4 ?'': '-outline' }}" color="secondary"></ion-icon>
+                  <ion-icon name="star{{ s.rating < 5 ?'': '-outline' }}" color="secondary"></ion-icon>
+                
+                  <ion-badge color="secondary" fill="outline">({{s.reviews.length}})</ion-badge>
+                </div>
+              </ion-col>
+            </ion-row>
+
+          </ion-card>
+
+        </ion-col>
+      </ion-row>
+
+      <ion-infinite-scroll threshold="25px" (ionInfinite)="loadmore($event)">
+        <ion-infinite-scroll-content loadingSpinner="crescent">
+
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+
+    </ion-grid>
+  </ng-container>
+
+
+
+  <ng-template #noItmes>
+
+
+    <ion-grid>
+      <ion-row>
+
+        <ion-col sizeLg="3" sizeMd="4" sizeXs="6">
+          <ion-card>
+            <ion-row>
+              <ion-col size="12">
+                <span>
+                  <div class="img-placeholder">
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </div>
+                </span>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="3">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+              <ion-col size="3">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+              <ion-col size="3">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+              <ion-col size="3">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="6">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+              <ion-col size="6">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </ion-col>
+
+        <ion-col sizeLg="3" sizeMd="4" sizeXs="6">
+
+          <ion-card>
+            <ion-row>
+              <ion-col size="12">
+                <span>
+                  <div class="img-placeholder">
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </div>
+                </span>
+              </ion-col>
+
+
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="3">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+              <ion-col size="3">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+              <ion-col size="3">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+              <ion-col size="3">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="6">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+              <ion-col size="6">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </ion-col>
+
+      </ion-row>
+
+      <ion-row>
+
+        <ion-col sizeLg="3" sizeMd="4" sizeXs="6">
+          <ion-card>
+            <ion-row>
+              <ion-col size="12">
+                <span>
+                  <div class="img-placeholder">
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </div>
+                </span>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="3">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+              <ion-col size="3">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+              <ion-col size="3">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+              <ion-col size="3">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="6">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+              <ion-col size="6">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </ion-col>
+
+        <ion-col sizeLg="3" sizeMd="4" sizeXs="6">
+
+          <ion-card>
+            <ion-row>
+              <ion-col size="12">
+                <span>
+                  <div class="img-placeholder">
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </div>
+                </span>
+              </ion-col>
+
+
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="3">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+              <ion-col size="3">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+              <ion-col size="3">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+              <ion-col size="3">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="6">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+              <ion-col size="6">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </ion-col>
+
+      </ion-row>
+
+    </ion-grid>
+  </ng-template>
+
+</ion-content>

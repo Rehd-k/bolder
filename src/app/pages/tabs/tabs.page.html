@@ -1,0 +1,58 @@
+<ion-tabs>
+
+
+  <ion-tab-bar slot="bottom">
+
+    <ion-tab-button tab="categories">
+      <ion-icon src="assets/icon/category-24px.svg"></ion-icon>
+      <ion-label>categories</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="sellers" class="sellers">
+      <ion-icon src="assets/icon/sewing-machine.svg"></ion-icon>
+      <ion-badge color="primary">(.)</ion-badge>
+      <ion-label>seller</ion-label>
+    </ion-tab-button>
+
+
+
+
+
+
+    <svg height="50" viewBox="0 0 100 50" width="110" xmlns="http://www.w3.org/2000/svg">
+      <path d="M100 0v50H0V0c.543 27.153 22.72 49 50 49S99.457 27.153 99.99 0h.01z" fill="red" fill-rule="evenodd">
+      </path>
+    </svg>
+
+
+    <ion-tab-button tab="account" class="account">
+      <ion-icon src="assets/icon/user.svg"></ion-icon>
+      <ion-label>account</ion-label>
+    </ion-tab-button>
+
+
+
+
+
+
+
+
+
+    <ion-tab-button tab="support">
+      <ion-icon src="assets/icon/support (1).svg"></ion-icon>
+      <ion-label>support</ion-label>
+    </ion-tab-button>
+
+
+
+  </ion-tab-bar>
+
+
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="goHome()">
+      <ion-icon name="Home"></ion-icon>
+    </ion-fab-button>
+
+  </ion-fab>
+
+</ion-tabs>

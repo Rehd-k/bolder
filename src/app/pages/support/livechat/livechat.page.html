@@ -1,0 +1,113 @@
+<ion-header>
+  <ion-toolbar *ngIf="helpType ===  'chat'" color="primary">
+    <ion-chip color="secondary" outline="true">
+      <ion-avatar>
+        <img src="image" style="border-radius: 50%;">
+      </ion-avatar>
+      <ion-label>Chip Avatar</ion-label>
+    </ion-chip>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismis()" fill="clear">
+        <ion-icon slot="icon-only" name="close" color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <ion-toolbar *ngIf="helpType != 'chat'" color="primary">
+    <ion-title color="light">{{helpType}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismis()" fill="clear">
+        <ion-icon slot="icon-only" name="close" color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid fixed *ngIf="helpType ===  'chat'">
+
+    <ion-row *ngFor="let user of users">
+      <ion-col size="12"  class="message other-message">
+        <ion-text>
+          <h1>- {{user.room}}</h1>
+        </ion-text>
+        <div>
+          <ion-text *ngFor="let room of user.users">
+            <h1>- {{room.username}}</h1>
+          </ion-text>
+        </div>
+        
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngFor="let message of messages">
+      <ion-col size="9" *ngIf="message.username !== currentUser" class="message other-message">
+        <span>{{message.message}}</span>
+        <div class="time" text-right><br>
+          {{message.createdAt | date: 'short'}}
+        </div>
+      </ion-col>
+
+
+      <ion-col offset="3" size="9" *ngIf="message.username === currentUser" class="message my-message">
+        <span>{{message.message}}</span>
+        <div class="time" text-right>
+          {{message.createdAt | date: 'short'}}
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid fixed *ngIf="helpType ===  'F.A.Q s'">
+    <ion-list *ngFor="let item of information let i = index" class="ion-no-padding faq-list">
+      <ion-item tappable (click)="toggleSection(i)" [ngClass]="{'section-active' : item.open, 'section': !item.open}">
+        <ion-icon slot="end" name="add" *ngIf="!item.open"></ion-icon>
+        <ion-icon slot="end" name="remove" *ngIf="item.open"></ion-icon>
+        <ion-label>{{item.name}}</ion-label>
+      </ion-item>
+
+      <div *ngIf="item.Children && item.open" class="child-list">
+        <ion-list *ngFor="let child of item.Children; let j = index" >
+          <ion-item tappable (click)="toggleItem(i, j)" *ngIf="child.Children" [ngClass]="{'child-active': child.open, 'child' : !child.open}">
+            <ion-icon slot="start" name="add" *ngIf="!child.open"></ion-icon>
+          <ion-icon slot="start" name="close" *ngIf="child.open"></ion-icon>
+            <ion-label>
+              {{child.name}}
+            </ion-label>
+          </ion-item>
+
+        <app-faqs [questions]="child" *ngIf="!child.Children"></app-faqs>
+       
+        <ion-list *ngIf="child.Children && child.open" class="answer-list">
+        <app-faqs [questions]="answer" *ngFor="let answer of child.Children"></app-faqs>
+       </ion-list>
+      </ion-list>
+      </div>
+    </ion-list>
+
+    
+  </ion-grid>
+  
+
+  <ion-grid fixed *ngIf="helpType ===  'Terms and Conditions'">
+   
+  </ion-grid>
+
+</ion-content>
+<ion-footer *ngIf="helpType ===  'chat'">
+  <ion-toolbar>
+    <ion-row class="ion-align-items-center ion-no-padding">
+      <ion-col size="10">
+        <textarea autosize [maxRows]="2" [(ngModel)]="msg" class="msg-input"></textarea>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button (click)="sendMessage()" expand="block" fill="clear" [disabled]="msg===''" class="send-btn">
+          <ion-icon slot="icon-only" name="send" color="secondary"></ion-icon>
+        </ion-button>
+        
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+
+</ion-footer>

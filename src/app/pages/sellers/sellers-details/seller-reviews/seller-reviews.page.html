@@ -1,0 +1,106 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Review {{Reviews.companyName}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-no-padding"> 
+  <ion-card class="ion-no-padding">
+    <ion-card-header>
+      <ion-card-subtitle>
+        {{Reviews.author}}
+      </ion-card-subtitle>
+      <ion-card-subtitle>
+        <ion-label>
+          {{Reviews.reviewHeader}}
+        </ion-label>
+
+        <span class="review-rating">
+          <ion-icon name="star{{ Reviews.rating < 1 ?'': '-outline' }}" color="secondary"></ion-icon>
+          <ion-icon name="star{{ Reviews.rating < 2 ?'': '-outline' }}" color="secondary"></ion-icon>
+          <ion-icon name="star{{ Reviews.rating < 3 ?'': '-outline' }}" color="secondary"></ion-icon>
+          <ion-icon name="star{{ Reviews.rating < 4 ?'': '-outline' }}" color="secondary"></ion-icon>
+          <ion-icon name="star{{ Reviews.rating < 5 ?'': '-outline' }}" color="secondary"></ion-icon>
+        </span>
+
+
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content class="review-text">
+      <ion-label>
+      {{Reviews.reviewText}}
+      </ion-label>
+    </ion-card-content>
+  </ion-card>
+
+
+</ion-content>
+
+<ion-footer class="tool-bar">
+  <ion-toolbar class="tool-bar animate__animated animate__bounce" color="primary">
+    <ion-title>
+      Add Review
+    </ion-title>
+    <ion-buttons slot="end" *ngIf="!addingReview">
+      <ion-button (click)="addReviewBtn()" fill="clear" size="large">
+        <ion-icon name="arrow-up-circle-outline" size="large"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end" *ngIf="addingReview">
+      <ion-button (click)="removeReviewBtn()" fill="clear" size="large">
+        <ion-icon name="arrow-down-circle-outline" size="large"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+
+
+
+
+
+
+  <div class="footer" #review>
+    <ion-item>
+      <ion-label>Rate Us</ion-label>
+      <ion-select value="peperoni" interface="action-sheet"
+        placeholder="Select Rate" [(ngModel)]="starRating">
+        <ion-select-option value="{{Reviews.starRating}}">
+          &#10032;
+        </ion-select-option>
+        <ion-select-option value="2">
+          &#10032;&#10032;
+        </ion-select-option>
+        <ion-select-option value="3">
+          &#10032;&#10032;&#10032;
+        </ion-select-option>
+        <ion-select-option value="4">
+          &#10032;&#10032;&#10032;&#10032;
+        </ion-select-option>
+        <ion-select-option value="5">
+          &#10032;&#10032;&#10032;&#10032;&#10032;
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-input type="text" placeholder="Review Header" [(ngModel)]="reviewHeader" value="{{Reviews.reviewHeader}}"></ion-input>
+
+    <ion-item>
+      <ion-label position="floating">What do u think about us ?</ion-label>
+      <ion-textarea [(ngModel)]="reviewText" value='{{Reviews.reviewText}}'></ion-textarea>
+    </ion-item>
+
+    <ion-button *ngIf="reason ==='addReview'" fill="outline" shape="rounded" expand="block" (click)="addReview()"[disabled]="reviewText ==='' && starRating === 0">
+      Add Review
+    </ion-button>
+    
+    <ion-button *ngIf="reason ==='updateReview'" fill="outline" shape="rounded" expand="block" (click)="updateReview()"[disabled]="reviewText ==='' && starRating === 0">
+      Update Review
+    </ion-button>
+  </div>
+
+</ion-footer>

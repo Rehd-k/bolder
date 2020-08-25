@@ -1,0 +1,52 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar color="primary" >
+        <ion-searchbar [formControl]="searchControl" animated="true" mode="ios" inputmode="search"
+      (ionChange)="onSearchInput()"  showCancelButton="focus"></ion-searchbar>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+    <div *ngIf="searching" class="spinner-container">
+        <ion-spinner></ion-spinner>
+      </div>
+      
+        <ion-list class="ion-no-padding search-list animate__animated animate__slideInUp" *ngFor="let result of searchResults">
+          <ion-item [routerLink]="['/product/', result._id]" >
+            <ion-grid class="ion-no-padding">
+              <ion-row>
+                <ion-col size="3" class="ion-no-padding">
+                  <img src="assets/images/person-holding-black-backpack-3731256.jpg" />
+                </ion-col>
+                <ion-col size="9" class="ion-no-padding search-details">
+                  <p class="price">{{result.Price}}</p>
+                  <p>{{result.Title}}</p>
+                  
+                  <p>
+                    {{result.Producers}}
+                  </p>
+        
+                  <ion-label>
+                    {{result.Subtitle}}
+                  </ion-label>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+      
+          </ion-item>
+        </ion-list>    
+    
+        <ion-infinite-scroll threshold="25px" position="bottom" (ionInfinite)="loadData($event)">
+          <ion-infinite-scroll-content  loadingText="Loading more ...">
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+     
+        <ion-button (click)="dismiss()">
+            <ion-icon slot="start" name="add"></ion-icon>
+            Click me
+        </ion-button>
+    
+
+</ion-content>
+
+ 

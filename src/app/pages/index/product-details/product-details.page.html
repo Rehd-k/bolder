@@ -1,0 +1,205 @@
+<app-header></app-header>
+
+
+<ion-toolbar class="tool">
+  <ion-buttons slot="start">
+    <ion-back-button defaultHref="/" size="large" color="primary"></ion-back-button>
+  </ion-buttons>
+
+  <ion-buttons slot="end" *ngIf="saved" >
+    <ion-button (click)="unSave()">
+      <ion-icon slot="icon-only"  name="heart" size="large" color="secondary"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-buttons slot="end" *ngIf="!saved">
+    <ion-button (click)="save()">
+      <ion-icon slot="icon-only"  name="heart-outline" size="large" color="secondary"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
+
+
+<ion-content>
+  <div class="img-container">
+    <ion-slides [options]="sliderOpt" pager>
+      <ion-slide class="imgPicker" *ngFor="let image of loadedProduct.Images">
+        <span>
+          <img [src]="image.url" (click)="getclickedImage(image.url)">
+        </span>
+
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+
+  <div class="content-container" >
+    <div #triggerElement></div>
+    <ion-grid>
+      <ion-row class="title-row">
+        <ion-col size="9">
+          <ion-row>
+            <ion-col size="12">
+              <h1>{{loadedProduct.Title}}</h1>
+            </ion-col>
+            <ion-col size="12">
+              <h5>{{loadedProduct.Subtitle}}</h5>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+
+        <ion-col size="3" [routerLink]="['/bavy/sellers', loadedProduct.Producers]">
+          <h4>{{loadedProduct.Producers}} 
+          <ion-icon name="add"></ion-icon>
+        </h4>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-item>
+            <ion-label>Color</ion-label>
+            <ion-select placeholder="Select Color" [(ngModel)]="color">
+              <ion-select-option *ngFor="let c of loadedProduct.Color" [value]="c" >{{c}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item>
+            <ion-label>Size</ion-label>
+            <ion-select placeholder="Select Size" [(ngModel)]="size">
+              <ion-select-option *ngFor="let s of loadedProduct.Sizes" [value]="s" >{{s}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="8">
+          <ion-row>
+            <ion-col size="12">
+              <h3 class="details" (click)="presentdescriptionModal()">Products details <ion-icon name="arrow-redo-circle-outline">
+                </ion-icon>
+              </h3>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+
+        <ion-col size="4">
+          <h3 class="price">
+            {{loadedProduct.Price | currency}}
+          </h3>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="9">
+          <ion-row>
+            <ion-col size="12">
+              <ion-button expand="block" (click)="toCart()"
+                [disabled]="color == '' || size == ''">Add to cart</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+
+        <ion-col size="3" class="share-icon">
+          <ion-icon name="share-social-outline" size="large" color="primary"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+    <ion-card class="ion-no-padding">
+      <ng-container *ngIf="related !==[] else noreview">
+      <ion-item detail>
+        <ion-label>
+          Reviews and Rating
+        </ion-label>
+
+        <span>
+          <ion-icon name="star{{ loadedProduct.rating < 1 ?'': '-outline' }}" color="secondary" slot="end"></ion-icon>
+          <ion-icon name="star{{ loadedProduct.rating < 2 ?'': '-outline' }}" color="secondary" slot="end"></ion-icon>
+          <ion-icon name="star{{ loadedProduct.rating < 3 ?'': '-outline' }}" color="secondary" slot="end"></ion-icon>
+          <ion-icon name="star{{ loadedProduct.rating < 4 ?'': '-outline' }}" color="secondary" slot="end"></ion-icon>
+          <ion-icon name="star{{ loadedProduct.rating < 5 ?'': '-outline' }}" color="secondary" slot="end"></ion-icon>
+          <ion-badge color="secondary">42</ion-badge>
+        </span>
+      </ion-item>
+      <p (click)="presentReviewModal()">this</p>
+      <ion-card *ngFor="let review of loadedReviews" >
+       
+        <ion-item>
+          <ion-label>{{review.author}}</ion-label>
+          <span>
+            <ion-icon name="star{{ review.rating < 1 ?'': '-outline' }}" color="secondary"></ion-icon>
+            <ion-icon name="star{{ review.rating < 2 ?'': '-outline' }}" color="secondary"></ion-icon>
+            <ion-icon name="star{{ review.rating < 3 ?'': '-outline' }}" color="secondary"></ion-icon>
+            <ion-icon name="star{{ review.rating < 4 ?'': '-outline' }}" color="secondary"></ion-icon>
+            <ion-icon name="star{{ review.rating < 5 ?'': '-outline' }}" color="secondary"></ion-icon>
+          </span>
+        </ion-item>
+
+        <ion-item>
+          <ion-label class="review-title">{{review.reviewTitle}}</ion-label>
+        </ion-item>
+        <ion-item class="reviewText-box">
+          <ion-label>{{review.reviewText}}</ion-label>
+        </ion-item>
+      </ion-card>
+
+   
+    </ng-container>
+    <ng-template #noreview>
+      <ion-item>
+        <ion-label>No reviews yet</ion-label>
+      </ion-item>
+    </ng-template>
+    </ion-card>
+    
+    <ion-item>
+      <ion-label>Related Products</ion-label>
+    </ion-item>
+    <ion-slides [options]="RealtedslidesOptions" pager class="paddingthing">
+      <ion-slide *ngFor="let product of related">
+        <ion-card [routerLink]="['/product/', product._id]" class="animate__animated animate__slideInUp">
+          <ion-row>
+            <ion-col size="12">
+              <span *ngFor="let image of product.Images; let i = index">
+                <span *ngIf="i == 0">
+                  <img [src]="image.url" class="r-productImg">
+                </span>
+              </span>
+            </ion-col>
+            <ion-col class="up" *ngIf="product.market_price">
+              <ion-badge class="r-price_dif" color="secondary">{{(product.market_price*100)/product.Price}} %
+              </ion-badge>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="12">
+              <ion-text>
+                <p class="r-subtitle ion-text-wrap">{{product.Subtitle}}</p>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+
+
+          <ion-row>
+            <ion-col *ngIf="product.market_price">
+              <ion-text>
+                <p class="r-c_price">{{product.market_price}}</p>
+              </ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text>
+                <p class="r-price">{{product.Price |currency}}</p>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+
+  </div>
+</ion-content>

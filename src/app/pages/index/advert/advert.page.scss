@@ -1,0 +1,17 @@
+.advert-item {
+    --background: white;
+    padding: 10px 0 0 0;
+    --border-radius: 10px;
+
+    .advert-details{
+        padding-left: 10px;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-weight: bold;
+        color: var(--ion-color-dark);
+        
+
+        .price {
+            float: right;
+        }
+    }
+}

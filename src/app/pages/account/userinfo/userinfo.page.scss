@@ -1,0 +1,32 @@
+.form-item_icon{
+    border-right: 1px solid #000000;
+    margin-top: 20px;
+}  
+.form-item_box{
+    border-bottom: 1px solid  #000000;
+}
+.form-item{
+    justify-content: center;
+    color : var(--ion-color-secondary)
+}
+.form-item-icon-div{
+    margin-top: 15px; 
+}
+ion-content{
+    --ion-text-align: center;
+  }
+  ion-icon { 
+    --ionicon-stroke-width: 40px;
+  }
+  ion-item{
+    --color: var(--ion-color-secondary);
+    --inner-padding-bottom: 0;
+    --padding-bottom: 0;
+    --color-activated: var(--ion-color-secondary);
+  }
+
+  ion-radio{
+      --color-checked: var(--ion-color-secondary);
+      -color: var(--ion-color-secondary)
+  }
+

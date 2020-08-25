@@ -1,0 +1,52 @@
+.profileImage {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 9rem;
+    height: 9rem;
+    border-radius: 10px;
+    // background:  linear-gradient(100deg, var(--ion-color-secondary) -100%, var(--ion-color-primary) 100%);
+    background:  var(--ion-color-primary);
+    font-size: 5rem;
+    color: var(--ion-color-light);
+    text-align: center;
+    line-height: 10rem;
+    margin: auto; 
+
+}
+.username{
+    font-size: 2em; 
+    margin: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: .5em;
+    margin-bottom: .5em;
+    text-transform: capitalize;
+}
+
+
+ .sticky{
+    z-index: 999;
+    position: sticky;
+    top: 0;
+ }
+ .w-100{
+     width: 100%;
+ }
+ .settings{
+     margin-bottom: 43px;
+ }
+ ion-segment {
+     --background: var(--ion-color-light);
+     border: 2px solid #FF4500;
+
+ }
+ ion-segment-button {
+    --indicator-color: var(--ion-color-primary);
+    --color-checked: var(--ion-color-light);
+    
+  }
+ion-toolbar{
+    --background: var(--ion-color-light)
+}
+.no_item {
+    text-align: center;
+    font-size: larger;
+}

@@ -1,0 +1,74 @@
+<ion-toolbar>
+  <ion-segment [(ngModel)]="innaSegment"  value="Comments">
+    <ion-segment-button value="Reacts">
+      Reacts
+    </ion-segment-button>
+    <ion-segment-button value="Comments">
+      <ion-label> Comments</ion-label>
+
+    </ion-segment-button>
+  </ion-segment>
+</ion-toolbar>
+<ion-toolbar *ngIf="innaSegment === 'Reacts'">
+  <ion-segment value="smile"  scrollable>
+    <ion-segment-button value="angry">
+      <ion-icon src="assets/icon/react/angry.svg" size="huge"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="sad">
+      <ion-icon src="assets/icon/react/sad.svg"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="neutral">
+      <ion-icon src="assets/icon/react/neutral.svg"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="smile">
+      <ion-icon src="assets/icon/react/smile.svg"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="shocked">
+      <ion-icon src="assets/icon/react/shocked.svg"></ion-icon>
+    </ion-segment-button>
+  </ion-segment>
+</ion-toolbar> 
+
+<ion-content>
+  <ion-grid fixed *ngIf="innaSegment ===  'Comments'">
+    <p>{{clickedStory}} </p>
+    <ion-row *ngFor="let message of messages">
+      <ion-col size="9" *ngIf="message.user !== currentUser" class="message other-message">
+        <b>{{message.user}}</b><br>
+        <span>{{message.msg}}</span>
+        <div class="time" text-right><br>
+          {{message.createdAt | date: 'short'}}
+        </div>
+      </ion-col>
+
+
+      <ion-col offset="3" size="9" *ngIf="message.user === currentUser" class="message my-message">
+        <b>{{message.user}}</b><br>
+        <span>{{message.msg}}</span>
+        <div class="time" text-right><br>
+          {{message.createdAt | date: 'short'}}
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+ 
+
+</ion-content>
+ 
+<ion-footer> *ngIf="innaSegment ===  'Comments'"
+  <ion-toolbar>
+  
+      <ion-row class="ion-align-items-center ion-no-padding">
+        <ion-col size="10">
+          <textarea autosize [maxRows]="4" [(ngModel)]="msg" class="msg-input"></textarea>
+        </ion-col>
+        <ion-col size="2">
+          <ion-button (click)="sendMessage()" expand="block" fill="clear" [disabled]="msg===''" class="send-btn">
+            <ion-icon slot="icon-only" name="send" color="secondary"></ion-icon>
+          </ion-button>
+          
+        </ion-col>
+      </ion-row>
+
+  </ion-toolbar>
+</ion-footer>

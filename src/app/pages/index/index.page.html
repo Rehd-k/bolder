@@ -1,0 +1,464 @@
+<app-header></app-header>
+
+<ion-content>
+  <ng-container *ngIf="advert.length > 0 else noItmes">
+    <ion-slides [options]="sliderOpt">
+      <ion-slide *ngFor="let product of advert">
+        <!-- <span *ngFor="let image of product.Images"> -->
+        <ion-card class="ion-no-padding card" [routerLink]="['', product.advertString]">
+
+          <!-- <img [src]="image.url"> -->
+          <img class="card_image" src="assets/images/person-holding-black-backpack-3731256.jpg" />
+
+        </ion-card>
+        <!-- </span>  -->
+
+      </ion-slide>
+    </ion-slides>
+    <!--!up caroseel or what not down rest od the indexpage-->
+
+    <ion-item button class="explore_btn" color="secondary" detail [routerLink]="['advert']">
+      <ion-label>
+        Explor our {{advert}}
+      </ion-label>
+    </ion-item>
+
+
+
+    <ion-grid>
+
+      <ion-row>
+        <ion-col sizeLg="3" sizeMd="4" sizeXs="6" *ngFor="let product of advert; let p = index"
+          class="ion-no-padding">
+
+          <ion-card [routerLink]="['', product.advertString]" class="animate__animated animate__slideInUp">
+            <ion-row>
+              <ion-col size="12">
+                <!-- <span *ngFor="let image of product.Images; let i = index">
+                  <span *ngIf="i == 0">
+                    <img [src]="image.url" class="p-image">
+                  </span>
+                </span> -->
+                <img src="assets/images/person-holding-black-backpack-3731256.jpg" class="p-image" />
+              </ion-col>
+              <ion-col class="up" *ngIf="product.MarketPrice">
+                <ion-badge class="price_dif" color="light">-
+                  {{(product.Price*100)/product.MarketPrice | number:'2.0-0'}} %</ion-badge>
+              </ion-col>
+            </ion-row>
+ 
+            <ion-row>
+              <ion-col size="12">
+                <ion-text>
+                  <p class="title">{{product.Title}}</p>
+
+                </ion-text>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12">
+                <ion-text>
+                  <p class="subtitle ion-text-wrap">{{product.Subtitle}}</p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+
+            <ion-row class="rating">
+              <ion-col size="12">
+                  <ion-icon name="star{{ product.rating < 1 ?'': '-outline' }}" color="secondary"></ion-icon>
+                  <ion-icon name="star{{ product.rating < 2 ?'': '-outline' }}" color="secondary"></ion-icon>
+                  <ion-icon name="star{{ product.rating < 3 ?'': '-outline' }}" color="secondary"></ion-icon>
+                  <ion-icon name="star{{ product.rating < 4 ?'': '-outline' }}" color="secondary"></ion-icon>
+                  <ion-icon name="star{{ product.rating < 5 ?'': '-outline' }}" color="secondary"></ion-icon>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col *ngIf="product.MarketPrice">
+                <ion-text>
+                  <p class="c_price">{{product.MarketPrice |currency}}</p>
+                </ion-text>
+              </ion-col>
+              <ion-col>
+                <ion-text>
+                  <p class="price">{{product.Price |currency}}</p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-infinite-scroll threshold="25px" (ionInfinite)="loadMore($event)">
+        <ion-infinite-scroll-content>
+
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </ion-grid>
+
+  </ng-container>
+
+
+
+
+
+  <ng-template #noItmes>
+
+
+    <ion-slides [options]="sliderOpt">
+      <ion-slide>
+        <div class="slide-placeholder">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </div>
+      </ion-slide>
+
+      <ion-slide>
+        <div class="slide-placeholder">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </div>
+      </ion-slide>
+    </ion-slides>
+
+
+    <ion-grid>
+      <ion-row>
+
+        <ion-col sizeLg="3" sizeMd="4" sizeXs="6">
+          <ion-card>
+            <ion-row>
+              <ion-col size="12">
+                <span>
+                  <div class="img-placeholder">
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </div>
+                </span>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="3">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+              <ion-col size="3">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+              <ion-col size="3">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+              <ion-col size="3">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="6">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+              <ion-col size="6">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </ion-col>
+
+        <ion-col sizeLg="3" sizeMd="4" sizeXs="6">
+
+          <ion-card>
+            <ion-row>
+              <ion-col size="12">
+                <span>
+                  <div class="img-placeholder">
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </div>
+                </span>
+              </ion-col>
+
+
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="3">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+              <ion-col size="3">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+              <ion-col size="3">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+              <ion-col size="3">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="6">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+              <ion-col size="6">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </ion-col>
+
+      </ion-row>
+
+      <ion-row>
+
+        <ion-col sizeLg="3" sizeMd="4" sizeXs="6">
+          <ion-card>
+            <ion-row>
+              <ion-col size="12">
+                <span>
+                  <div class="img-placeholder">
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </div>
+                </span>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="3">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+              <ion-col size="3">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+              <ion-col size="3">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+              <ion-col size="3">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="6">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+              <ion-col size="6">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </ion-col>
+
+        <ion-col sizeLg="3" sizeMd="4" sizeXs="6">
+
+          <ion-card>
+            <ion-row>
+              <ion-col size="12">
+                <span>
+                  <div class="img-placeholder">
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </div>
+                </span>
+              </ion-col>
+
+
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="3">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+              <ion-col size="3">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+              <ion-col size="3">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+              <ion-col size="3">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="6">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+              <ion-col size="6">
+                <ion-text>
+                  <p>
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                  </p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </ion-col>
+
+      </ion-row>
+
+    </ion-grid>
+  </ng-template>
+</ion-content>

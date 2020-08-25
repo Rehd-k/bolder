@@ -1,0 +1,100 @@
+{
+    "Faqs": [
+        {
+            "name": "Buyers",
+            "Children": [
+                {
+                    "question": "How to actuslly buy things ?",
+                    "answer": "Well i dont know how i should answer this qustion ... first use your money pipsquick"
+                },
+                {
+                    "question": "How to get things i bought ?",
+                    "answer": "Well i dont know how i should answer this qustion ... first use your house pipsquick"
+                },
+                {
+                    "question": "How to finally pay for the said things ?",
+                    "answer": "Well i dont know how i should answer this qustion ... first use your head pipsquick"
+                }
+            ]
+        },
+        {
+            "name": "Seller",
+            "Children": [
+                {
+                    "name": "fashion",
+                    "Children": [
+                        {
+                            "question": "How to actuslly seller things ?",
+                            "answer": "Well i dont know how i should answer this qustion ... first use your money pipsquick"
+                        },
+                        {
+                            "question": "How to get things i sell ?",
+                            "answer": "Well i dont know how i should answer this qustion ... first use your house pipsquick"
+                        },
+                        {
+                            "question": "How to finally get paid for the said things ?",
+                            "answer": "Well i dont know how i should answer this qustion ... first use your head pipsquick"
+                        }
+                    ]
+                },
+                {
+                    "name": "bealty",
+                    "Children": [
+                        {
+                            "question": "How to actuslly seller things ?",
+                            "answer": "Well i dont know how i should answer this qustion ... first use your money pipsquick"
+                        },
+                        {
+                            "question": "How to get things i sell ?",
+                            "answer": "Well i dont know how i should answer this qustion ... first use your house pipsquick"
+                        },
+                        {
+                            "question": "How to finally get paid for the said things ?",
+                            "answer": "Well i dont know how i should answer this qustion ... first use your head pipsquick"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "producer",
+            "Children": [
+                {
+                    "name": "rawmatiral",
+                    "Children": [
+                        {
+                            "question": "How to actually producse things ?",
+                            "answer": "Well i dont know how i should answer this qustion ... first use your money pipsquick"
+                        },
+                        {
+                            "question": "How to producse things i sell ?",
+                            "answer": "Well i dont know how i should answer this qustion ... first use your house pipsquick"
+                        },
+                        {
+                            "question": "How to finally get paid for the said things ?",
+                            "answer": "Well i dont know how i should answer this qustion ... first use your head pipsquick"
+                        }
+                    ]
+                },
+                {
+                    "name": "platics",
+                    "Children": [
+                        {
+                            "question": "How to  platics things ?",
+                            "answer": "Well i dont know how i should answer this qustion ... first use your money pipsquick"
+                        },
+                        {
+                            "question": "How to get platics i sell ?",
+                            "answer": "Well i dont know how i should answer this qustion ... first use your house pipsquick"
+                        },
+                        {
+                            "question": "How to finally get paid for the said platics ?",
+                            "answer": "Well i dont know how i should answer this qustion ... first use your head pipsquick"
+                        }
+                    ]
+                }
+            ]
+        }
+
+    ]
+}

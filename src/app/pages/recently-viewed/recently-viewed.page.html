@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>recently-viewed</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-list>
+  <ion-card no-padding *ngFor="let product of products">
+    <ion-item >
+      <ion-img [src]="product.productImage"></ion-img> 
+      <ion-label>
+        <h3>{{ product.productTitle }}</h3>
+        <p>{{ product.productSubtitle }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-card>
+</ion-list>
+
+</ion-content>
+
+
+
+

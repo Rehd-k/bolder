@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>reviews</ion-title>
+    <ion-button (click)="dismiss()" fill="clear" slot="end">
+      <ion-icon slot="icon-only" name="close" size="small"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card *ngFor="let review of loadedReviews" >
+       
+    <ion-item>
+      <ion-label>{{review.author}}</ion-label>
+      <span>
+        <ion-icon name="star{{ review.rating < 1 ?'': '-outline' }}" color="secondary"></ion-icon>
+        <ion-icon name="star{{ review.rating < 2 ?'': '-outline' }}" color="secondary"></ion-icon>
+        <ion-icon name="star{{ review.rating < 3 ?'': '-outline' }}" color="secondary"></ion-icon>
+        <ion-icon name="star{{ review.rating < 4 ?'': '-outline' }}" color="secondary"></ion-icon>
+        <ion-icon name="star{{ review.rating < 5 ?'': '-outline' }}" color="secondary"></ion-icon>
+      </span>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="review-title">{{review.reviewTitle}}</ion-label>
+    </ion-item>
+    <ion-item class="reviewText-box">
+      <ion-label>{{review.reviewText}}</ion-label>
+    </ion-item>
+  </ion-card>
+
+</ion-content>

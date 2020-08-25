@@ -1,0 +1,110 @@
+<app-header></app-header>
+
+
+
+<ion-toolbar class="toolbar">
+  <ion-grid>
+    <ion-row class="ion-justify-content-end">
+     <ion-button (click)="logout()" expanded="block" fill="outline">
+      <ion-icon name="log-out-outline" slot="icon-only"></ion-icon>
+     </ion-button>
+    </ion-row>
+    <ion-row>
+      <div class="profileImage"> 
+        {{intials}}
+      </div>
+    </ion-row>
+    <ion-row>
+      <ion-text class="username">
+        {{ userinfo.firstName }}
+      </ion-text>
+    </ion-row> 
+    <ion-row> 
+      <ion-segment [(ngModel)]="segmentModel" class="w-100">
+        <ion-segment-button value="order">
+          <ion-label>Orders </ion-label>
+          <ion-badge> - </ion-badge>
+        </ion-segment-button>
+
+
+        <ion-segment-button value="Pending reviews">
+          <ion-label>Pending reviews </ion-label>
+          <ion-badge> - </ion-badge>
+        </ion-segment-button>
+
+
+        <ion-segment-button value="Saved items">
+          <ion-label>Saved items </ion-label>
+          <ion-badge> - </ion-badge>
+        </ion-segment-button>
+
+
+      </ion-segment>
+    </ion-row>
+  </ion-grid>
+</ion-toolbar>
+
+ 
+
+
+<ion-content>
+  <ion-fab vertical="bottom" horizontal="start" slot="fixed" class="settings">
+    <ion-fab-button><ion-icon name="settings"></ion-icon></ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button (click)='settings = "Location"' (click)='UserInfoModal()' ><ion-icon name="location" color="secondary"></ion-icon></ion-fab-button>
+      <ion-fab-button (click)='settings = "Personal Information"' (click)='UserInfoModal()' ><ion-icon name="person" color="secondary"></ion-icon></ion-fab-button>
+      <ion-fab-button (click)='settings = "Notification"' (click)='UserInfoModal()' ><ion-icon name="notifications" color="secondary"></ion-icon></ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+  <ion-grid>
+    <ion-row *ngIf="segmentModel === 'order'">
+      <ion-col size="12" *ngIf="orders === 0">
+        <h1 class="no_item"> 
+          No Orders yet
+        </h1>
+      </ion-col>
+      <span *ngIf="orders != 0">
+        <ion-col size="4" *ngFor="let O of user.Order" >
+          <ion-card >
+            <ion-img [src]="O.img"></ion-img>
+          </ion-card>
+        </ion-col>
+      </span>
+
+   
+    </ion-row>
+
+    <ion-row *ngIf="segmentModel === 'Pending reviews'">
+      <ion-col size="12" *ngIf="reviews === 0">
+        <h1 class="no_item"> 
+          No Pendding Reviews
+        </h1>
+      </ion-col>
+      <span *ngIf="reviews != 0">
+        <ion-col size="4" *ngFor="let P of user.Reviews">
+          <ion-card>
+            <ion-img [src]="P.img"></ion-img>
+          </ion-card>
+        </ion-col>
+      </span>
+
+    </ion-row>
+
+    <ion-row *ngIf="segmentModel === 'Saved items'">
+      <ion-col size="12" *ngIf="saved === 0">
+        <h1 class="no_item"> 
+          No Saved Items yet
+        </h1>
+      </ion-col>
+      <span *ngIf="saved != 0">
+        <ion-col size="4" *ngFor="let S of user.savedIterms">
+          <ion-card>
+            <ion-img [src]="S.img"></ion-img>
+          </ion-card>
+        </ion-col>
+      </span>
+ 
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

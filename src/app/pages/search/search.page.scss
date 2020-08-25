@@ -1,0 +1,21 @@
+.search-list {
+    margin-bottom: 4px;
+    --ion-item-background: #fff;
+    border-radius: 5px;
+    border: 1px solid var(--ion-color-secondary);
+
+    .search-details{
+        padding-left: 10px;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-weight: bold;
+        color: var(--ion-color-dark);
+    }
+       
+    
+    .price {
+        float: right;
+    }
+}
+.spinner-container {
+    text-align: center;
+}

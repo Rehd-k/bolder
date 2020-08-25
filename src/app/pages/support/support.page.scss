@@ -1,0 +1,57 @@
+.header {
+    height: 300px; 
+    background: linear-gradient(100deg, var(--ion-color-secondary) -100%, #FF4500 100%);
+}
+.start_chat {
+    height: auto; 
+    background: white; 
+    margin-top: -100px; 
+    border-top: 2px solid lightblue; 
+    border-radius: 8px;
+}
+.online-indicator {
+    border-radius: 50%; 
+    height: 12px; 
+    width: 12px; 
+    background: green;
+}
+.online-text {
+    margin-top: -8px; 
+    padding-bottom: 3px;
+    line-height: 25px;
+}
+.ofline-indicator {
+    border-radius: 50%; 
+    height: 12px; width: 12px; 
+    background: darkcyan;
+}
+.email-input {
+    border: 1px solid #3F5EFB; 
+    border-radius: 50px;
+    transition: 1s;
+
+}
+.self-help-box {
+    height: auto; 
+    background: white; 
+    border-top: 2px solid #3F5EFB; 
+    border-radius: 8px;
+}
+.welcome_text {
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
+    line-height: 25px;
+    // color: var(--ion-color-light);
+    color: white;
+}
+.welcome_header {
+    font-size: larger;
+    font-weight: bolder;
+    color: white;
+}
+.self_help{
+    font-size: large;
+    line-height: 25px;
+    font-weight: bold;
+}

@@ -1,0 +1,18 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary" class="main-tab">
+      <ion-searchbar (click)="searchModel()" showCancelButton="never" mode="ios"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+
+ 
+
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed" >
+  <ion-fab-button size='large' color="primary" (click)="openCart()" class="cart-fab" >
+    <ion-text>
+      <p class="item-count">{{ cartItemCount | async }}</p>
+    </ion-text>
+    <ion-icon name="cart-outline" class="cart"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

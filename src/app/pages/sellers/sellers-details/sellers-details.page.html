@@ -1,0 +1,362 @@
+<ion-header>
+  <ion-toolbar color="primary" class="toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="bavy/sellers"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{loadedSeller.companyName}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-back-button></ion-back-button>
+  </ion-buttons>
+
+
+  <ion-segment [(ngModel)]="segment" class="w-100">
+    <ion-segment-button value="about">
+      About
+    </ion-segment-button>
+    <ion-segment-button value="products" (click)="getproducts()">
+      Products
+    </ion-segment-button>
+    <ion-segment-button value="stories">
+      Stories
+    </ion-segment-button>
+  </ion-segment>
+</ion-toolbar>
+<ion-toolbar>
+  <ion-row>
+    <ion-col size="6" *ngIf="!reviewed">
+      <ion-button (click)="OpenReviews()" expand="block">
+        Review Us
+      </ion-button>
+    </ion-col>
+
+    <ion-col size="6" *ngIf="reviewed">
+      <ion-button (click)="OpenReviews()" expand="block" fill="outline">
+        Update Review
+      </ion-button>
+    </ion-col>
+
+    <ion-col size="6" *ngIf="!followed">
+      <ion-button (click)="follow()" expand="block">
+        Follow Us
+      </ion-button>
+    </ion-col>
+
+    <ion-col size="6" *ngIf="followed">
+      <ion-button (click)="unfollow()" expand="block" fill="outline">
+        UnFollow
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+</ion-toolbar>
+
+<ion-content>
+
+
+  <!-------------------The about page -------------------->
+  <ion-grid *ngIf="segment === 'about'" class="ion-no-padding">
+    <ion-row>
+      <ion-img src="assets/images/photoofthreejeans1598507.jpg"></ion-img>
+    </ion-row>
+    <ion-row>
+      <ion-col size="2">
+
+      </ion-col>
+      <ion-col size="8">
+        <div class="logo-img-holder">
+          <img src="assets/images/fashion-shoes-footwear-19090.jpg" class="logo-img">
+        </div>
+      </ion-col>
+      <ion-col size="2">
+
+      </ion-col>
+
+    </ion-row>
+
+    <ion-item>
+      <ion-label>
+        <h1 class="C-name">
+          {{loadedSeller.companyName}}
+          <small>
+            <ion-icon slot="start" name="add"></ion-icon>
+          </small>
+        </h1>
+      </ion-label>
+    </ion-item>
+    <ion-row>
+      <ion-col size="12" class="main-rating">
+        <ion-icon name="star{{ loadedSeller.rating < 1 ?'': '-outline' }}" color="secondary"></ion-icon>
+        <ion-icon name="star{{ loadedSeller.rating < 2 ?'': '-outline' }}" color="secondary"></ion-icon>
+        <ion-icon name="star{{ loadedSeller.rating < 3 ?'': '-outline' }}" color="secondary"></ion-icon>
+        <ion-icon name="star{{ loadedSeller.rating < 4 ?'': '-outline' }}" color="secondary"></ion-icon>
+        <ion-icon name="star{{ loadedSeller.rating < 5 ?'': '-outline' }}" color="secondary"></ion-icon>
+        <ion-badge color="primary">{{loadedSeller.follwers.length}}</ion-badge>
+      </ion-col>
+    </ion-row>
+
+    <ion-item>
+      <ion-segment [(ngModel)]="cSegment">
+        <ion-segment-button value="about">
+          <ion-label>About</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="followers">
+          <ion-label>Followers
+            <ion-badge color="primary">{{loadedSeller.follwers.length}}</ion-badge>
+          </ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-item>
+
+    <ion-grid fixed *ngIf="cSegment ==='about'" class="ion-no-padding">
+      <ion-card class="basic-info ion-no-padding">
+        <ion-card-header>
+          <ion-card-title>Basic info</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-row>
+            <ion-col size="6">Website: {{ loadedSeller.Website}}</ion-col>
+            <ion-col size="6">Since: {{loadedSeller.createdOn | date}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6">
+              Type:
+              <span *ngFor="let type of loadedSeller.Types">
+                {{type}},
+              </span>
+            </ion-col>
+            <ion-col size="6">Location: {{loadedSeller.Address.state}}</ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="ion-no-padding">
+        <ion-card-header>
+          <ion-card-title>Little About Us</ion-card-title>
+        </ion-card-header>
+        <ion-card-content class="bio">
+          {{loadedSeller.About}}
+        </ion-card-content>
+      </ion-card>
+
+
+      <ion-card class="seller-reviews" class="ion-no-padding">
+        <ion-card-header>
+          <ion-card-title>Reviews</ion-card-title>
+        </ion-card-header>
+        <ion-card-content class="ion-no-padding">
+          <ion-slides [options]="reviewSlider" *ngFor="let review of loadedSeller.reviews">
+            <ion-slide>
+              <ion-card class="ion-no-padding" (click)="OpenReviews()">
+                <ion-card-header>
+                  <ion-card-subtitle>
+                    {{review.author}}
+                  </ion-card-subtitle>
+                  <ion-card-subtitle>
+                    <ion-label>
+                      {{review.reviewHeader}}
+                    </ion-label>
+                    <span class="review-rating">
+                      <ion-icon name="star{{ review.rating < 1 ?'': '-outline' }}" color="secondary"></ion-icon>
+                      <ion-icon name="star{{ review.rating < 2 ?'': '-outline' }}" color="secondary"></ion-icon>
+                      <ion-icon name="star{{ review.rating < 3 ?'': '-outline' }}" color="secondary"></ion-icon>
+                      <ion-icon name="star{{ review.rating < 4 ?'': '-outline' }}" color="secondary"></ion-icon>
+                      <ion-icon name="star{{ review.rating < 5 ?'': '-outline' }}" color="secondary"></ion-icon>
+                    </span>
+                  </ion-card-subtitle>
+                </ion-card-header>
+                <ion-card-content class="review-text">
+                  <ion-label>
+                    {{review.reviewText}}
+                  </ion-label>
+                </ion-card-content>
+              </ion-card>
+            </ion-slide>
+          </ion-slides>
+        </ion-card-content>
+      </ion-card>
+    </ion-grid>
+    <ion-grid *ngIf="cSegment ==='followers'" class="ion-no-padding">
+      <span *ngFor="let follower of loadedSeller.follwers">
+        <ion-card>
+          <ion-item>
+            <ion-label>{{follower.followerName}}</ion-label>
+          </ion-item>
+        </ion-card>
+      </span>
+    </ion-grid>
+  </ion-grid>
+
+
+
+  <!-------------------The products page -------------------->
+
+  <ion-grid *ngIf="segment === 'products'" class="ion-no-padding">
+    <ion-row>
+      <ion-col sizeLg="3" sizeMd="4" sizeXs="6" *ngFor="let product of sellersItems">
+
+        <ion-card [routerLink]="['/product/', product._id]" class="animate__animated animate__slideInUp products">
+          <ion-row>
+            <ion-col size="12">
+              <!-- <span *ngFor="let image of product.Images; let i = index">
+                <span *ngIf="i == 0">
+                  <img [src]="image.url" class="p-image">
+                </span>
+              </span> -->
+              <img src="assets/images/person-holding-black-backpack-3731256.jpg" class="p-image" />
+            </ion-col>
+            <ion-col class="up" *ngIf="product.MarketPrice">
+              <ion-badge class="price_dif" color="light">- {{(product.Price*100)/product.MarketPrice | number:'2.0-0'}}
+                %</ion-badge>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="12">
+              <ion-text>
+                <p class="title">{{product.Title}}</p>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="12">
+              <ion-text>
+                <p class="subtitle ion-text-wrap">{{product.Subtitle}}</p>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="rating">
+            <ion-col size="12">
+              <div class="rating">
+                <ion-icon name="star{{ product.rating < 1 ?'': '-outline' }}" color="secondary"></ion-icon>
+                <ion-icon name="star{{ product.rating < 2 ?'': '-outline' }}" color="secondary"></ion-icon>
+                <ion-icon name="star{{ product.rating < 3 ?'': '-outline' }}" color="secondary"></ion-icon>
+                <ion-icon name="star{{ product.rating < 4 ?'': '-outline' }}" color="secondary"></ion-icon>
+                <ion-icon name="star{{ product.rating < 5 ?'': '-outline' }}" color="secondary"></ion-icon>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col *ngIf="product.MarketPrice">
+              <ion-text>
+                <p class="c_price"><s>{{product.MarketPrice |currency}}</s></p>
+              </ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text>
+                <p class="price">{{product.Price | currency}}</p>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-infinite-scroll threshold="25px" (ionInfinite)="loadMoreProducts($event)">
+      <ion-infinite-scroll-content>
+
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-grid>
+
+
+
+  <!-------------------The Stories page -------------------->
+
+  <ion-grid *ngIf="segment === 'stories'" class="ion-no-padding">
+    <ion-row>
+      <ion-col class="ion-no-padding">
+        <ion-card *ngFor="let story of stories">
+          <ion-card-header>
+            <ion-card-title>{{story.title}}</ion-card-title>
+            <ion-card-subtitle>{{story.Subtitle}}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content class="ion-no-padding">
+
+            <p color="dark" class="story-text" *ngIf="story.storyText != ''">
+              {{story.storyText}}
+            </p>
+            <ion-slides *ngIf="story.storyMedia.length > 0">
+              <span *ngFor="let stori of story.storyMedia">
+                <ion-slides>
+                  <img [src]="stori.url" class="w-100">
+                </ion-slides>
+              </span>
+
+            </ion-slides>
+          </ion-card-content>
+
+          <!-- <ion-item class="story-actions"> -->
+          <!-- <ion-buttons>
+              <ion-button (click)="like(story._id)" slot="start">
+                <ion-icon name="happy-outline" slot="start"></ion-icon>
+                React
+              </ion-button>
+              <ion-badge color="primary" mode="ios">42</ion-badge>
+            </ion-buttons> -->
+          <ion-grid fixed>
+            <ion-row>
+              <ion-col size="8">
+                <ion-item>
+                  <ion-input type="text" placeholder="Comment"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col size="2">
+                <ion-item>
+               
+                    <ion-icon  name="star" color="primary" size="large" ></ion-icon>
+                  
+                  <ion-select value="2" interface="popover">
+                    <ion-select-option value="1">Peperoni</ion-select-option>
+  
+                    <ion-select-option value="2">Hawaii</ion-select-option>
+  
+                    <ion-select-option value="3">Peperoni</ion-select-option>
+  
+                    <ion-select-option value="4">Hawaii</ion-select-option>
+  
+                    <ion-select-option value="5">Peperoni</ion-select-option>
+                  </ion-select>
+                  <!-- <ion-badge color="primary">{{story.React.length}}</ion-badge> -->
+                </ion-item>
+              </ion-col>
+              <ion-col size="2">
+                <ion-item>
+                  <ion-icon name="happy-outline" size="large" color="primary"></ion-icon>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <!-- <ion-item>
+              <ion-label>React</ion-label>
+
+              <ion-badge color="primary">{{story.React.length}}</ion-badge>
+            </ion-item> -->
+          <!-- 
+            <ion-buttons slot="end">
+              <ion-button (click)="comment(story._id)">
+                <ion-icon name="chatbubble-ellipses-outline" slot="start"></ion-icon>
+                Comment
+              </ion-button>
+              <ion-badge color="primary">{{story.Comments.length}}</ion-badge>
+            </ion-buttons> -->
+
+          <!-- </ion-item> -->
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-infinite-scroll threshold="25px" (ionInfinite)="loadMoreStories($event)">
+      <ion-infinite-scroll-content>
+
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+  </ion-grid>
+
+</ion-content>

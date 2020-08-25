@@ -1,0 +1,121 @@
+/*
+host css
+*/
+:host {
+  background: url("/assets/images/person-holding-black-backpack-3731256.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 490px;
+  background-position: top left;
+  padding: 0; 
+} 
+/*
+General Css
+*/
+
+.w-100{
+  width: 100%;
+}
+
+ion-toolbar { 
+  --background: transparant;
+}
+ion-text {
+  font-size: 10px; 
+}
+.no-transform {
+  transform: translate3d(0, 0, 0);
+  padding-bottom: 0px!important;
+  // border-radius: 30px 30px 0 0;
+}
+
+ // heck screen width for diffrernt ...this style ..just this one
+ion-content {
+   --padding: 0!important;
+  --background: transparant;
+  transform: translate3d(0, 360px, 0);
+  transition: 0.5s;
+  
+}
+
+
+.content-container { 
+  background: var(--ion-color-light);
+  padding: 0;
+  height: auto;
+  border-radius: 30px 30px 0 0;
+  width: 100%;
+  
+}
+
+/*
+image PIcker 
+*/
+
+.imgPicker img {
+  height: 125.769px;
+  border-radius: .5em;
+  margin-top: 10px;
+  // margin-bottom: 10px;
+}
+
+.img-container { 
+  padding: 0;
+  border-radius: 30px 30px 0 0;
+  overflow: scroll;
+}
+
+/*
+Main body
+*/
+
+.save-btn {
+  margin-top: 2em;
+}
+.price {
+  text-align: center;
+}
+.share-icon{
+ text-align: center;
+ margin: auto
+}
+
+/*
+Mian Body 
+  |Reviews
+*/
+
+.review-title{
+  font-weight: bold;
+}
+
+
+
+/*
+Main body 
+  |related
+*/
+.r-productImg {  
+  border-radius: 21px;
+  width: 100%;
+}
+.r-price_dif{
+  float: right;
+} 
+
+.r-subtitle {
+  margin: -10px;
+  font-weight: normal;
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 0 0 5px 0;
+}
+
+.r-c_price {
+  text-align: center;
+  text-decoration: line-through;
+  color: #00f6f9;
+}
+.r-price {
+  text-align: center;
+  font-weight: bolder;
+}

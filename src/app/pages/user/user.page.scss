@@ -1,0 +1,64 @@
+.signup_link{
+    text-align: center;
+}
+.email_icon{
+    border-right: 1px solid #FFCEA2;
+    margin-top: 20px;
+}  
+.email_box{
+    border-bottom: 1px solid #FFCEA2;
+}
+.email{
+    justify-content: center;
+    color : #FFCEA2
+}
+.email-icon-div{
+    margin-top: 15px; 
+}
+ion-content{
+    --color: #f4f5f8;
+    --ion-background-color:#425C5A ;
+    --ion-text-align: center;
+  }
+  ion-icon { 
+    --ionicon-stroke-width: 40px;
+  }
+  ion-item{
+    --color: #f4f5f8;
+    --inner-padding-bottom: 0;
+    --padding-bottom: 0;
+    --color-activated: #ffffff;
+  }
+  .fg-pw{
+    text-align: center;
+  }
+  .login{
+    width: 100%;
+    --border-radius: 15px;
+    --color: #425C5A;
+    --background: #FFFEA2;
+    --background-activated:#425C5A;
+
+  } 
+  a{
+    color: #FFFEA2!important;
+  }
+  
+  .login-txt{
+    --color: #425C5A!important;
+  }
+  .logo_icon{
+    color: #FFFEA2;
+    margin: auto;
+    padding-top:150px;
+    font-size: 64px;
+    padding-bottom: 50px;
+  }
+  ion-radio{
+      --color-checked: #FFFEA2;
+  }
+  .genger-btn{
+      width: 100%;
+  }
+
+

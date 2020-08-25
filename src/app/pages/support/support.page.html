@@ -1,0 +1,149 @@
+<app-header></app-header>
+<ion-content>
+  <ion-grid fixed class="ion-no-padding">
+    <ion-row>
+      <ion-col size="12" class="ion-no-padding header ">
+        <ion-grid fixed class="ion-margin-start">
+          <ion-row>
+            <ion-col size="11" class="welcome_header">
+              <h1 class="ion-justify-content-center">
+                Hi, there 
+                <ion-icon slot="start" name="trash-outline"></ion-icon>
+              </h1>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="11">
+              <p class="welcome_text">
+                We are a very small team but a real human being would get back to you fast !
+              </p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="11" class="ion-margin-start start_chat">
+        <ion-grid fixed>
+          <ion-row>
+            <ion-col size="12">
+              <h3> Start a conversation </h3>
+            </ion-col>
+            <ion-col size="12">
+              <ng-container *ngIf="online else ofline">
+                <ion-row>
+                  <ion-col size="1">
+                    <div class="online-indicator"></div>
+                  </ion-col>
+                  <ion-col size="11" class="online-text">
+                    Online
+                  </ion-col>
+                </ion-row>
+              </ng-container>
+              <ng-template #ofline>
+                <ion-row>
+                  <ion-col size="1">
+                    <div class="ofline-indicator"></div>
+                  </ion-col>
+                  <ion-col size="11" class="online-text">
+                    We would get back to you today
+                  </ion-col>
+                </ion-row>
+              </ng-template>
+
+
+
+              <ion-row>
+                <ion-col>
+                  <ion-img src="h"></ion-img>
+                </ion-col>
+
+                <ion-col>
+                  <ion-img src="h"></ion-img>
+                </ion-col>
+
+                <ion-col>
+                  <ion-img src="h"></ion-img>
+                </ion-col>
+
+                <ion-col>
+                  <ion-img src="h"></ion-img>
+                </ion-col>
+              </ion-row>
+
+
+              <ng-container *ngIf="loggin else loggout">
+                <ion-button (click)="sendMessage()" shape="round" size="medium" (click)="clickedHelp ='chat'">
+                  <ion-icon slot="start" name="send"></ion-icon>
+                  Chat with us
+                </ion-button>
+              </ng-container>
+
+
+              <ng-template #loggout>
+                  <ion-row>
+                    <ion-col size="12">
+                      Lets know who you are
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col size="10">
+                      <ion-input type="email" placeholder="Input Email" class="email-input" [(ngModel)]="emailInput"></ion-input>
+                    </ion-col>
+                    <ion-col size="2">
+                      <ion-button (click)="sendMessage()" fill="clear">
+                        <ion-icon slot="icon-only" name="send"></ion-icon>
+                      </ion-button>
+                    </ion-col>
+                  </ion-row>
+              </ng-template>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="11" class="ion-margin-start self-help-box">
+        <ion-row>
+          <ion-col size="12" class="self_help">Self Help</ion-col>
+        </ion-row>
+      
+
+      <ion-row>
+        <ion-col size="4">
+          <ion-button (click)="Getfaqs()" expand="block" fill="outline" shape="round">
+            F.A.Q s
+          </ion-button>
+        </ion-col>
+        <ion-col size="8">
+          <ion-button (click)="Getterms()" expand="block" fill="outline" shape="round">
+            Terms and Conditions
+          </ion-button>
+
+        </ion-col>
+      </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="11" class="ion-margin-start"
+        style="height: 100px; background: white; border-top: 2px solid #3F5EFB; border-radius: 8px;"></ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,372 @@
+<ion-content>
+
+  <ion-slides [options]="slideOpts " #slides class="swiper-no-swiping slider-hight">
+    
+      <ion-slide class="slider-hight">
+        <ion-grid class="slider-hight">
+
+          <ion-row class="slider-hight">
+            <ion-icon name="cart-outline" class="logo_icon"></ion-icon>
+          </ion-row>
+
+          <form [formGroup]="loginForm">
+          <ion-row class="email" class="slider-hight">
+            <ion-col size="11">
+              <ion-row class="email_box">
+                <ion-col size="2" class="email_icon">
+                  <div class="email-icon-div">
+                    <ion-icon name="at-outline" size="large"></ion-icon>
+                  </div>
+                </ion-col>
+                <ion-col size="9"> 
+                  <ion-item lines="none">
+                    <ion-label position="floating">
+                      E-MAIL
+                    </ion-label>
+                    <ion-input class="email-icon-div" type="email" formControlName="email"></ion-input>
+                  </ion-item>
+                </ion-col>
+
+              </ion-row>
+
+            </ion-col>
+          </ion-row>
+
+
+
+          <ion-row class="email" class="slider-hight">
+            <ion-col size="11">
+              <ion-row class="email_box">
+                <ion-col size="2" class="email_icon">
+                  <div class="email-icon-div">
+                    <ion-icon name="lock-closed-outline" size="large"></ion-icon>
+                  </div>
+                </ion-col>
+                <ion-col size="9">
+                  <ion-item lines="none">
+                    <ion-label position="floating">
+                      PASSWORD
+                    </ion-label>
+                    <ion-input class="email-icon-div" type="password" formControlName="password"></ion-input>
+                  </ion-item>
+                </ion-col>
+
+              </ion-row>
+
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="slider-hight">
+            <ion-col size="12">
+              <h5 class="fg-pw">
+                Forgot Password ?
+              </h5>
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="slider-hight">
+            <ion-col size="12">
+              <ion-button class="login" size="large" type="button" [disabled]="!loginForm.valid" (click)="login()">
+                <p class="login-txt"> Log in </p>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="slider-hight">
+            <ion-col size="12">
+              <p class="signup_link">
+                Not a member <a (click)="Next(slides)">Join now</a>
+              </p>
+
+            </ion-col>
+          </ion-row>
+
+
+          <ion-row class="slider-hight">
+            <ion-col>
+              <ion-button class="login" size="large" type="button">
+                <p class="login-txt"> Log in with <ion-icon name="logo-facebook" class="fb_icon"></ion-icon>
+                </p>
+              </ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button class="login" size="large" type="button">
+                <p class="login-txt"> Log in with <ion-icon name="logo-google" class="g_icon"></ion-icon>
+                </p>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </form>
+
+        </ion-grid>
+      </ion-slide>
+   
+
+
+    <!-----------------------------  Registration Page ------------------->
+
+    
+      <ion-slide>
+        <ion-grid>
+
+          <ion-row>
+            <ion-icon name="cart-outline" class="logo_icon"></ion-icon>
+          </ion-row>
+          <form [formGroup]="RegForm">
+          <ion-row class="email">
+            <ion-col size="11">
+              <ion-row class="email_box">
+                <ion-col size="2" class="email_icon">
+                  <div class="email-icon-div">
+                    <ion-icon name="person-outline" size="large"></ion-icon>
+                  </div>
+                </ion-col>
+                <ion-col size="9">
+                  <ion-item lines="none">
+                    <ion-label position="floating">
+                      First Name*
+                    </ion-label>
+                    <ion-input class="email-icon-div" type="email" formControlName="firstName"></ion-input>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+
+
+
+
+
+
+
+
+
+          <ion-row class="email">
+            <ion-col size="11">
+              <ion-row class="email_box">
+                <ion-col size="2" class="email_icon">
+                  <div class="email-icon-div">
+                    <ion-icon name="person-outline" size="large"></ion-icon>
+                  </div>
+                </ion-col>
+                <ion-col size="9">
+                  <ion-item lines="none">
+                    <ion-label position="floating">
+                      Last Name*
+                    </ion-label>
+                    <ion-input class="email-icon-div" type="email" formControlName="lastName"></ion-input>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+
+
+
+          <ion-row class="email">
+            <ion-col size="11">
+              <ion-row class="email_box">
+                <ion-col size="2" class="email_icon">
+                  <div class="email-icon-div">
+                    <ion-icon name="at-outline" size="large"></ion-icon>
+                  </div>
+                </ion-col>
+                <ion-col size="9">
+                  <ion-item lines="none">
+                    <ion-label position="floating">
+                      E-Mail*
+                    </ion-label>
+                    <ion-input class="email-icon-div" type="email" formControlName="email"></ion-input>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+
+
+
+          <ion-row class="email">
+            <ion-col size="11">
+              <ion-row class="email_box">
+                <ion-col size="2" class="email_icon">
+                  <div class="email-icon-div">
+                    <ion-icon name="lock-closed-outline" size="large"></ion-icon>
+                  </div>
+                </ion-col>
+                <ion-col size="9">
+                  <ion-item lines="none">
+                    <ion-label position="floating">
+                      Password*
+                    </ion-label>
+                    <ion-input class="email-icon-div" type="password" formControlName="password"></ion-input>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+
+
+
+          <ion-row class="email">
+            <ion-col size="11">
+              <ion-row class="email_box">
+                <ion-col size="2" class="email_icon">
+                  <div class="email-icon-div">
+                    <ion-icon name="call-outline" size="large"></ion-icon>
+                  </div>
+                </ion-col>
+                <ion-col size="9">
+                  <ion-item lines="none">
+                    <ion-label position="floating">
+                      Phone Number*
+                    </ion-label>
+                    <ion-input class="email-icon-div" type="number" formControlName="phoneNumber"></ion-input>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+
+
+
+          <ion-row class="email">
+            <ion-col size="11">
+              <ion-row class="email_box">
+                <ion-col size="2" class="email_icon">
+                  <div class="email-icon-div">
+                    <ion-icon name="transgender-outline" size="large"></ion-icon>
+                  </div>
+                </ion-col>
+                <ion-col size="9">
+                  <ion-item lines="none">
+                    <ion-label>
+                      Gender
+                    </ion-label>
+                  </ion-item>
+                  <ion-radio-group formControlName="gender">
+                    <ion-row>
+                      <ion-col size="6">
+                        <ion-button color="green" size="small" class="genger-btn">
+                          <ion-label>Male </ion-label>
+                          <ion-radio slot="end" value="Male"></ion-radio>
+                        </ion-button>
+                      </ion-col>
+                      <ion-col size="6">
+                        <ion-button color="green" size="small" class="genger-btn">
+                          <ion-label>Female </ion-label>
+                          <ion-radio slot="end" value="Female"></ion-radio>
+                        </ion-button>
+                      </ion-col>
+                    </ion-row>
+                  </ion-radio-group>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+
+
+
+          <ion-row class="email">
+            <ion-col size="11">
+              <ion-row class="email_box">
+                <ion-col size="2" class="email_icon">
+                  <div class="email-icon-div">
+                    <ion-icon name="calendar-outline" size="large"></ion-icon>
+                  </div>
+                </ion-col>
+                <ion-col size="9">
+                  <ion-item lines="none">
+                    <ion-label position="floating">D.O.B</ion-label>
+                    <ion-datetime displayFormat="MMM DDD YYYY" placeholder="Select Date" color="success"
+                      formControlName="Dob"></ion-datetime>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+
+
+          <ion-row class="email">
+            <ion-col size="11">
+              <ion-row class="email_box">
+                <ion-col size="2" class="email_icon">
+                  <div class="email-icon-div">
+                    <ion-icon name="home-outline" size="large"></ion-icon>
+                  </div>
+                </ion-col>
+                <ion-col size="9">
+                  <ion-item lines="none">
+                    <ion-label position="floating">
+                      State Of Residence*
+                    </ion-label>
+                    <ion-select placeholder="Select One" formControlName="address_s">
+                      <ion-select-option value="f">Female</ion-select-option>
+                      <ion-select-option value="m">Male</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+
+
+          <ion-row class="email">
+            <ion-col size="11">
+              <ion-row class="email_box">
+                <ion-col size="2" class="email_icon">
+                  <div class="email-icon-div">
+                    <ion-icon name="call-outline" size="large"></ion-icon>
+                  </div>
+                </ion-col>
+                <ion-col size="9">
+                  <ion-item lines="none">
+                    <ion-label position="floating">
+                      Address*
+                    </ion-label>
+                    <ion-input class="email-icon-div" type="text" formControlName="address"></ion-input>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="12">
+              <ion-button class="login" size="large" type="button" [disabled]="!RegForm.valid" (click)="register()">
+                <p class="login-txt"> Join </p>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="12">
+              <p class="signup_link">
+                Already a member <a (click)="Back(slides)">Log in</a>
+              </p>
+
+            </ion-col>
+          </ion-row>
+
+
+          <ion-row>
+            <ion-col>
+              <ion-button class="login" size="large" type="button">
+                <p class="login-txt"> Join with <ion-icon name="logo-facebook" class="fb_icon"></ion-icon>
+                </p>
+              </ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button class="login" size="large" type="button">
+                <p class="login-txt"> Join with <ion-icon name="logo-google" class="g_icon"></ion-icon>
+                </p>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </form>
+        </ion-grid>
+      </ion-slide>
+   
+  </ion-slides>
+
+
+</ion-content>
